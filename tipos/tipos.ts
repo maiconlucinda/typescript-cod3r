@@ -1,4 +1,4 @@
-// stirng
+//! stirng
 let nome = 'Maicon';
 console.log(nome)
 // nome = 18;
@@ -6,21 +6,21 @@ console.log(nome)
 
 
 
-// number
+//! number
 let idade = 27;
 idade = 25.5;
 console.log(idade);
 
 
 
-// boolean
+//! boolean
 let possuiHobbies = false;
 // possuiHobbies = 1
 console.log(possuiHobbies);
 
 
 
-// tipos explícitos
+//! tipos explícitos
 let minhaIdade;
 minhaIdade = 27;
 console.log(minhaIdade);
@@ -29,7 +29,7 @@ console.log(typeof minhaIdade);
 
 
 
-// Array
+//! Array
 let hobbies: any = ["Cozinhar", "Praticar Esportes"];
 console.log(hobbies[0]);
 
@@ -38,14 +38,14 @@ hobbies = [2];
 
 
 
-// Tupla
+//! Tupla
 let endereco1: [string, number] = ["Cabo Verde", 65];
 let endereco2: [string, number, number] = ["Av Principal", 99, 135];
 console.log(endereco1, endereco2);
 
 
 
-// Funções
+//! Funções
 function retornaSomado(num1: number, num2: number): number {
   return num1 + num2;
 }
@@ -63,7 +63,7 @@ function multiplicar(numA: number, numB: number): number {
 }
 
 
-// Função como tipo
+//! Função como tipo
 /**
  * Forma de eu tipar uma variável para receber somente função (função como tipo), será uma
  * sintaxe parecida com array function.
@@ -78,7 +78,7 @@ calculo = multiplicar; // Dessa forma não tenho nenhuma amarração na let calc
 
 
 
-// Objeto como tipo
+//! Objeto como tipo
 // Embora o Typescript já infere o valor, nesse caso estou explicitando o valor que quero.
 let usuario: { nome: string, idade: number } = {
   nome: 'Joao',
@@ -98,3 +98,31 @@ usuario = {
   idade: 20
 }
 
+
+//! Union Types
+let nota: any = 10; // Posso usar o any mas voltaria com a viagem Javascript.
+console.log(`Minha nota é ${nota}`);
+
+let nota2: number | string = 10; // Usando o union posso colocar tudo.
+console.log(`Minha nota é ${nota}`);
+
+
+//! Never
+//Nunca cehagará ao final sem dar um erro.
+function falha(msg: string): never {
+  throw new Error(msg);
+}
+
+const produto = {
+  nome: '    ',
+  preco: -1,
+  validarProduto() {
+    if (!this.nome || this.nome.trim().length === 0) {
+      falha('Precisa ter um nome');
+    }
+    if (this.preco <= 0) {
+      falha('Preco inválido');
+    }
+  }
+}
+produto.validarProduto();
